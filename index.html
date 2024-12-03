@@ -3,51 +3,115 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Máy Tính Hai Số</title>
-  <!-- Bootstrap 5 CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  >
+  <title>Simple Calculator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #f5f5f5;
+    }
+    .calculator {
+      max-width: 350px;
+      margin: 80px auto;
+      padding: 25px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    .result-display {
+      background: #e9ecef;
+      border-radius: 5px;
+      text-align: center;
+      padding: 15px;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      font-weight: bold;
+      color: #495057;
+    }
+    button {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+    .btn-danger {
+      background-color: #dc3545;
+      border-color: #dc3545;
+    }
+    .btn-success {
+      background-color: #28a745;
+      border-color: #28a745;
+    }
+    .btn-warning {
+      background-color: #ffc107;
+      border-color: #ffc107;
+    }
+    .btn-secondary {
+      background-color: #6c757d;
+      border-color: #6c757d;
+    }
+    /* Đối với Chrome, Edge và các trình duyệt sử dụng WebKit */
+    input[type="number"]::-webkit-inner-spin-button, 
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Đối với Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+  </style>
 </head>
 <body>
-  <div class="container mt-5">
-    <div class="card shadow">
-      <div class="card-header text-center">
-        <h2>Máy Tính Hai Số</h2>
-      </div>
-      <div class="card-body">
-        <form>
-          <div class="mb-3">
-            <label for="num1" class="form-label">Số thứ nhất:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="num1"
-              placeholder="Nhập số thứ nhất"
-            >
-          </div>
-          <div class="mb-3">
-            <label for="num2" class="form-label">Số thứ hai:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="num2"
-              placeholder="Nhập số thứ hai"
-            >
-          </div>
-          <div class="d-flex justify-content-between">
-            <button type="button" class="btn btn-primary">Cộng (+)</button>
-            <button type="button" class="btn btn-danger">Trừ (-)</button>
-            <button type="button" class="btn btn-success">Nhân (×)</button>
-            <button type="button" class="btn btn-warning">Chia (÷)</button>
-          </div>
-        </form>
-      </div>
+  <div class="calculator">
+    <h2 class="text-center text-primary">Simple Calculator</h2>
+    <div class="result-display" id="result">0</div>
+    <div class="input-group mb-3">
+      <input type="number" id="num1" class="form-control" placeholder="Enter first number">
+    </div>
+    <div class="input-group mb-3">
+      <input type="number" id="num2" class="form-control" placeholder="Enter second number">
+    </div>
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary" onclick="calculate('+')">Add (+)</button>
+      <button class="btn btn-danger" onclick="calculate('-')">Subtract (-)</button>
+      <button class="btn btn-success" onclick="calculate('*')">Multiply (×)</button>
+      <button class="btn btn-warning" onclick="calculate('/')">Divide (÷)</button>
+      <button class="btn btn-secondary mt-2" onclick="resetCalculator()">Reset</button>
     </div>
   </div>
 
-  <!-- Bootstrap 5 JS (Optional for interactivity) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function calculate(operator) {
+      const num1 = parseFloat(document.getElementById('num1').value);
+      const num2 = parseFloat(document.getElementById('num2').value);
+      let result;
+
+      if (isNaN(num1) || isNaN(num2)) {
+        result = "Please enter valid numbers!";
+      } else {
+        switch (operator) {
+          case '+': result = num1 + num2; break;
+          case '-': result = num1 - num2; break;
+          case '*': result = num1 * num2; break;
+          case '/': 
+            result = num2 !== 0 ? num1 / num2 : "Cannot divide by 0";
+            break;
+        }
+      }
+      document.getElementById('result').textContent = result;
+    }
+
+    function resetCalculator() {
+      document.getElementById('num1').value = '';
+      document.getElementById('num2').value = '';
+      document.getElementById('result').textContent = 0;
+    }
+  </script>
 </body>
 </html>
