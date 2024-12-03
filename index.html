@@ -78,40 +78,15 @@
       <input type="number" id="num2" class="form-control" placeholder="Enter second number">
     </div>
     <div class="d-grid gap-2">
-      <button class="btn btn-primary" onclick="calculate('+')">Add (+)</button>
-      <button class="btn btn-danger" onclick="calculate('-')">Subtract (-)</button>
-      <button class="btn btn-success" onclick="calculate('*')">Multiply (×)</button>
-      <button class="btn btn-warning" onclick="calculate('/')">Divide (÷)</button>
-      <button class="btn btn-secondary mt-2" onclick="resetCalculator()">Reset</button>
+      <button class="btn btn-primary" onclick="add()">Add (+)</button>
+      <button class="btn btn-danger" onclick="subtract()">Subtract (-)</button>
+            <button class="btn btn-success" onclick="">Multiply (×)</button>
+      <button class="btn btn-warning" onclick="">Divide (÷)</button>
+      <button class="btn btn-secondary mt-2" onclick="">Reset</button>
     </div>
   </div>
 
-  <script>
-    function calculate(operator) {
-      const num1 = parseFloat(document.getElementById('num1').value);
-      const num2 = parseFloat(document.getElementById('num2').value);
-      let result;
-
-      if (isNaN(num1) || isNaN(num2)) {
-        result = "Please enter valid numbers!";
-      } else {
-        switch (operator) {
-          case '+': result = num1 + num2; break;
-          case '-': result = num1 - num2; break;
-          case '*': result = num1 * num2; break;
-          case '/': 
-            result = num2 !== 0 ? num1 / num2 : "Cannot divide by 0";
-            break;
-        }
-      }
-      document.getElementById('result').textContent = result;
-    }
-
-    function resetCalculator() {
-      document.getElementById('num1').value = '';
-      document.getElementById('num2').value = '';
-      document.getElementById('result').textContent = 0;
-    }
-  </script>
+ 
+  <script src="/NguyenTuanHuy_plus_minus.js"></script>
 </body>
 </html>
